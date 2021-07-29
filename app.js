@@ -5,7 +5,7 @@ const list = ["_8bnn1GqX70","uOBApnN_K7w","PYBmNk304G4","wXuzS9xR49M","imEqHThoi
 let counter = 0
 list.forEach(item => {
   request.head('https://source.unsplash.com/' + item, (err, res, body) => {
-    const newUrl = res.request.uri.href.split('?')[0] + '?fm=jpg&q=60&w=1080'
+    const newUrl = res.request.uri.href.split('?')[0] + '?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=60&w=1080'
     request(newUrl).pipe(fs.createWriteStream('output/' + item + '.jpg')).on('close', () => {
       counter++
       console.log(counter + '/' + list.length)
